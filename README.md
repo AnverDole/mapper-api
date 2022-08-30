@@ -41,6 +41,7 @@ accept: application/json
 ##### Note
 ###### You need to store the token securly for feature requests.
 <br>
+
 ##### Errors
 	{
 		"message": "The given data was invalid.",
@@ -61,6 +62,7 @@ accept: application/json
 	}
 
 ------------
+
 ###  2. Sign In (Login)
 ##### Endpoint
 ###### /login
@@ -95,6 +97,7 @@ accept: application/json
 ##### Note
 ###### You need to store the value securly for feature requests.
 <br>
+
 ##### Errors
 	{
 		"message": "The given data was invalid.",
@@ -104,7 +107,9 @@ accept: application/json
 			]
 		}
 	}
+
 ------------
+
 ###  3. Forgot Password
 ##### Forgot password functionality consist of three steps
 
@@ -137,6 +142,7 @@ accept: application/json
 ##### Note
 ######  For security reasons, even if the given user is wrong in step 1, it will send a success message.
 <br>
+
 ##### Errors
 None
 
@@ -163,6 +169,7 @@ accept: application/json
 	
 
 <br>
+
 ##### Errors
 	{
 		"message": "The given data was invalid.",
@@ -198,6 +205,7 @@ accept: application/json
 	
 
 <br>
+
 ##### Errors
 	{
 		"message": "The given data was invalid.",
