@@ -1,5 +1,6 @@
 <?php
 
+use App\Notifications\PasswordResetOtp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->post('/register', 'RegisterController@register')->name("register");
 
-Route::middleware('guest')->post('/login', function (Request $request) {
-    return response()->json($request->all());
-})->name("login");
+Route::middleware('guest')->post('/login', 'LoginController@login')->name("login");
+
+Route::middleware('guest')->post('/forgot-password/step-1', 'ForgotPasswordController@step1')->name("forgot.password.step-1");
+Route::middleware('guest')->post('/forgot-password/step-2', 'ForgotPasswordController@step2')->name("forgot.password.step-2");
+Route::middleware('guest')->post('/forgot-password/step-3', 'ForgotPasswordController@step3')->name("forgot.password.step-3");
+

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Notifications\PasswordResetOtp;
 use Illuminate\Support\Facades\Route;
 
 /*
