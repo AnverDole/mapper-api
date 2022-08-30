@@ -111,7 +111,7 @@ accept: application/json
 ------------
 
 ###  3. Forgot Password
-##### Forgot password functionality consist of three steps
+##### Forgot password functionality consist of three steps.
 
 ##### Step 1 
 ###### User will send the email.
