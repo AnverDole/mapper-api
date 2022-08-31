@@ -17,12 +17,13 @@ class LoginController extends Controller
     {
         $validator = Validator::make($request->all(), [
             "email" => "required|email|exists:users,email",
-            "password" => "required|string|min:8",
+            "password" => "required|string",
             "device_name" => "required|string|max:100",
         ]);
 
         $validator->after(function ($v) {
             $data = (object)$v->getData();
+            if($v->errors()->count() > 0) return;
 
             $user = User::where("email", $data->email)->first();
             if (!$user) return;
