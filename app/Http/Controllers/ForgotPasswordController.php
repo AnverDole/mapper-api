@@ -80,10 +80,13 @@ class ForgotPasswordController extends Controller
 
         $validator->after(function ($v) {
             $data = (object)$v->getData();
+            if($v->errors()->count() > 0) {
+                return;
+            }
 
             // check whether the given OTP is valid
             if (!$this->isValidOTP($data->email, $data->otp)) {
-                $v->errors()->add("otp", "Invalid OTP, Please try again.");
+                $v->errors()->add("otp", "Invalid one time password, Please try again.");
             }
         });
 
@@ -91,7 +94,7 @@ class ForgotPasswordController extends Controller
             return response()->json([
                 "message" => "The given data was invalid.",
                 "errors" => [
-                    "otp" => "Invalid OTP, Please try again"
+                    "otp" => "Invalid one time password, Please try again."
                 ]
             ], 400);
         }

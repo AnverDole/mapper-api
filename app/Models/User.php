@@ -43,4 +43,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(PasswordResetOtp::class, "user_id");
     }
+    public function Settings()
+    {
+        return $this->hasOne(Settings::class, "user_id");
+    }
+    public function Subjects()
+    {
+        return $this->hasMany(Subject::class, "user_id");
+    }
+    public function ScheduleSlots()
+    {
+        return $this->hasMany(ScheduleSlot::class, "user_id");
+    }
+    public function Modules(){
+        return $this->hasManyThrough(Module::class, Subject::class, "user_id", "subject_id");
+    }
 }

@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         $validator->after(function ($v) {
             $data = (object)$v->getData();
-            if($v->errors()->count() > 0) return;
+            if ($v->errors()->count() > 0) return;
 
             $user = User::where("email", $data->email)->first();
             if (!$user) return;
@@ -52,6 +52,34 @@ class LoginController extends Controller
             "status" => true,
             "token" => $token->plainTextToken,
             "user" => $user
+        ]);
+    }
+    /**
+     * Unauthenticate the user
+     * @param Illuminate\Http\Request $request
+     */
+    public function logout(Request $request)
+    {
+        $user = $request->user();
+
+        $isLoggedOut = $user->tokens()
+            ->where('id', $user->currentAccessToken()->id)
+            ->delete();
+
+        return response()->json([
+            "status" => (bool)$isLoggedOut
+        ]);
+    }
+    /**
+     * Fetch authenticated user details
+     * @param Illuminate\Http\Request $request
+     */
+    public function fetchUser(Request $request)
+    {
+
+        return response()->json([
+            "status" => true,
+            "user" => $request->user()
         ]);
     }
 }

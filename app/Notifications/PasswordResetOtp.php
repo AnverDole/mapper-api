@@ -7,9 +7,13 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PasswordResetOtp extends Notification
+class PasswordResetOtp extends Notification implements ShouldQueue
 {
     use Queueable;
+
+    private $firstname;
+    private $otp;
+    private $email;
 
     /**
      * Create a new notification instance.
